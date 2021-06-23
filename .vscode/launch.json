@@ -1,0 +1,21 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Run",
+			"request": "launch",
+			"type": "dart",
+			"flutterMode": "release",
+			"deviceId": "chrome",
+			"program": "example/lib/main.dart"
+		},
+		{
+			"name": "Profile",
+			"request": "launch",
+			"type": "dart",
+			"flutterMode": "profile",
+			"deviceId": "chrome",
+			"program": "example/lib/main.dart"
+		},
+	]
+}

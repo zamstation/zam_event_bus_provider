@@ -1,47 +1,39 @@
-# Dart Package Template
+# Event Bus Provider
 
-**Version:** 0.5.0
+A flutter provider that passes EventBus down to all the widgets.  
+  
+[![Version](https://img.shields.io/pub/v/zam_event_bus_provider?color=%234287f5)](https://pub.dev/packages/zam_event_bus_provider)
+[![Build](https://github.com/zamstation/zam_event_bus_provider/actions/workflows/build.yaml/badge.svg)](https://github.com/zamstation/zam_event_bus_provider/actions/workflows/build.yaml)
+[![Stars](https://img.shields.io/github/stars/zamstation/zam_event_bus_provider.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/zamstation/zam_event_bus_provider/stargazers)
+[![License](https://img.shields.io/github/license/zamstation/zam_event_bus_provider)](https://pub.dev/packages/zam_event_bus_provider/license)
 
-This repository acts as a template repository for all dart packages released by zamstation.
+## What's inside the package
 
-When a repository is created using this template, one must go through the following checklist to prepare for the first commit.
+Includes the following core components.
 
-## CHECKLIST
+  * [EventBusProvider](https://pub.dev/documentation/zam_event_bus_provider/latest/zam_event_bus_provider/EventBusProvider-class.html)
 
-### - [ ] Setup
-- [ ] Rename this file to `guide.md`.
-- [ ] Rename `original_README.md` to `README.md`
+Check out all the components in detail [here](https://pub.dev/documentation/zam_event_bus_provider/latest/zam_event_bus_provider/zam_event_bus_provider-library.html)
 
-### pubspec.yaml
-- [ ] In name field, replace package_name with your package name.
-- [ ] In description field, add description not less than 60 characters.
-- [ ] In repository field, replace package_name with your package name.
-- [ ] In dependencies field, remove zam_core if not needed.
+## How to use
 
-### README.md
-- [ ] Replace @package_title@ with package title.
-- [ ] Replace @description@ with description.
-- [ ] Replace 19 occurences of @package_name@ with package name.
-- [ ] Replace 6 occurences of @component_n@ with component names.
-- [ ] Replace @how_to_use@ with usage and examples.
-- [ ] Add contributors as necessary.
+```dart
+void main() {
+  final bus = EventBus(transformers);
 
-### lib/package_name.dart
-- [ ] Rename package_name.dart to @package_name@.dart
-- [ ] Add your files.
+  // Add EventBusProvider before MaterialApp so that
+  // it is made available to all the routes.
+  final app = EventBusProvider(
+    bus: bus,
+    child: MaterialApp(
+      home: MyHomePage(title: 'Event Bus Demo'),
+    ),
+  );
+  runApp(app);
+}
+```
 
-### .github/workflows/build.yaml
-- [ ] Remove `"**"` from branches-ignore array. Leave `temp`.
+To learn more, move on to the [example section](https://pub.dev/packages/zam_event_bus_provider/example) or check out this dedicated [example in github](https://github.com/zamstation/zam_event_bus_provider/blob/main/example/lib/main.dart).
 
-### test
-- [ ] Remove `dummy_test.dart` when you have created your first test. You need to have at least one test to satisfy the `publish.sh` script.
-- [ ] Remove `_setup.dart` if not required.
-
-### example/lib/main
-- [ ] Add your `example`.
-
-### CHANGELOG.md
-- [ ] Replace @component_n@ with your component names.
-
-### guide.md (This File)
-- [ ] Remove this file.
+## Contributors
+  * [Amsakanna](https://github.com/amsakanna)

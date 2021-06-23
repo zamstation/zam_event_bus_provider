@@ -1,5 +1,11 @@
-/.dart_tool/
-/build/
-/coverage/
-pubspec.lock
+.dart_tool/
+.idea/
+android/
+build/
+coverage/
+ios/
+web/
+.metadata
 .packages
+*.iml
+pubspec.lock
