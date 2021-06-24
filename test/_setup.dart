@@ -28,8 +28,7 @@ class MyApp extends StatelessWidget {
   final EventBus _bus;
 
   static final _transformers = <EventTransformer>[
-    CustomEventTransformer<IncrementEvent>(
-        IncrementEvent, handleIncrementEvent),
+    CustomEventTransformer<IncrementEvent>(handleIncrementEvent),
   ];
 
   MyApp({Key? key})

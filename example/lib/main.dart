@@ -27,8 +27,7 @@ void handleIncrementEvent(IncrementEvent event, EventBus bus) {
 void main() {
   // The setup
   final transformers = <EventTransformer>[
-    CustomEventTransformer<IncrementEvent>(
-        IncrementEvent, handleIncrementEvent),
+    CustomEventTransformer<IncrementEvent>(handleIncrementEvent),
   ];
   final bus = EventBus(transformers);
 
