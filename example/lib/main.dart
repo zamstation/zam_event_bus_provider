@@ -14,15 +14,6 @@ class Counter {
 }
 
 ///
-/// InitializeEvent and its Handler.
-///
-class InitializeEvent {}
-
-Counter transformInitializeEvent(InitializeEvent event) {
-  return Counter();
-}
-
-///
 /// IncrementEvent and its Handler.
 ///
 class IncrementEvent {}
@@ -36,35 +27,42 @@ void handleIncrementEvent(IncrementEvent event, EventBus bus) {
 void main() {
   // The setup
   final transformers = <EventTransformer>[
-    SavingEventTransformer<InitializeEvent>(
-        InitializeEvent, transformInitializeEvent),
     CustomEventTransformer<IncrementEvent>(
         IncrementEvent, handleIncrementEvent),
   ];
   final bus = EventBus(transformers);
 
-  // Send out the initial events.
-  bus.publish(InitializeEvent());
+  // Store initial data.
+  bus.save(Counter());
 
-  // Add EventBusProvider before MaterialApp so that
-  // it is made available to all the routes.
-  final app = EventBusProvider(
-    bus: bus,
-    child: MaterialApp(
-      home: MyHomePage(title: 'Event Bus Demo'),
-    ),
-  );
-  runApp(app);
+  // Pass in the bus and run the app.
+  runApp(MyApp(bus));
 }
 
-class MyHomePage extends StatelessWidget {
-  final String title;
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class MyApp extends StatelessWidget {
+  final EventBus bus;
+
+  const MyApp(this.bus);
 
   @override
   Widget build(BuildContext context) {
-    final bus = EventBusProvider.of(context);
+    // Add EventBusProvider before MaterialApp so that
+    // it is made available to all the routes.
+    return EventBusProvider(
+      bus: bus,
+      child: MaterialApp(
+        home: HomePage(title: 'Event Bus Demo'),
+      ),
+    );
+  }
+}
 
+class HomePage extends StatelessWidget {
+  final String title;
+  HomePage({Key? key, required this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: Center(
@@ -73,13 +71,12 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             Text('You have pushed the button this many times:'),
             StreamBuilder<Counter>(
-                initialData: bus.selectFromStore<Counter>(),
-                stream: bus.select<Counter>(),
+                initialData: context.fetch<Counter>(),
+                stream: context.select<Counter>(),
                 builder: (context, snapshot) {
                   // IMPORTANT: Always initialize before listening.
-                  // Here data will not be null since InitializeEvent
-                  // is sent before initializing the app
-                  // and initialData is set.
+                  // Here data will not be null since InitializeEvent is
+                  // sent before initializing the app and initialData is set.
                   final counterText = snapshot.data!.value.toString();
                   return Text(
                     counterText,
@@ -90,7 +87,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => bus.publish(IncrementEvent()),
+        onPressed: () => context.dispatch(IncrementEvent()),
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),

@@ -14,15 +14,6 @@ class Counter {
 }
 
 ///
-/// InitializeEvent and its Handler.
-///
-class InitializeEvent {}
-
-Counter transformInitializeEvent(InitializeEvent event) {
-  return Counter();
-}
-
-///
 /// IncrementEvent and its Handler.
 ///
 class IncrementEvent {}
@@ -37,8 +28,6 @@ class MyApp extends StatelessWidget {
   final EventBus _bus;
 
   static final _transformers = <EventTransformer>[
-    SavingEventTransformer<InitializeEvent>(
-        InitializeEvent, transformInitializeEvent),
     CustomEventTransformer<IncrementEvent>(
         IncrementEvent, handleIncrementEvent),
   ];
@@ -46,7 +35,7 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key})
       : _bus = EventBus(_transformers),
         super(key: key) {
-    _bus.publish(InitializeEvent());
+    _bus.save(Counter());
   }
 
   @override
@@ -66,8 +55,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bus = EventBusProvider.of(context);
-
     return Scaffold(
       appBar: AppBar(title: Text(title)),
       body: Center(
@@ -76,8 +63,8 @@ class MyHomePage extends StatelessWidget {
           children: <Widget>[
             Text('You have pushed the button this many times:'),
             StreamBuilder<Counter>(
-                initialData: bus.selectFromStore<Counter>(),
-                stream: bus.select<Counter>(),
+                initialData: context.fetch<Counter>(),
+                stream: context.select<Counter>(),
                 builder: (context, snapshot) {
                   // IMPORTANT: Always initialize before listening.
                   // Here data will not be null since InitializeEvent
@@ -93,7 +80,7 @@ class MyHomePage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => bus.publish(IncrementEvent()),
+        onPressed: () => context.dispatch(IncrementEvent()),
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
