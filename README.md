@@ -19,14 +19,14 @@ Check out all the components in detail [here](https://pub.dev/documentation/zam_
 
 ## How to use
 
-### Step 1: Create an `EventBus`
+### Step 1: Create an EventBus
 
 ```dart
 final bus = EventBus(transformers);
 ```
 `EventBus` is from `zam_event_bus` package.
 
-### Step 2: Provide the `EventBus`
+### Step 2: Provide the EventBus
 
 ```dart
 final app = EventBusProvider(
@@ -40,7 +40,7 @@ runApp(app);
 
 Add `EventBusProvider` before `MaterialApp` so that it is made available to all the routes.
 
-### Step 3: Use `context` to dispatch events
+### Step 3: Use context to dispatch events
 
 ```dart
 FloatingActionButton(
@@ -50,10 +50,43 @@ FloatingActionButton(
 ),
 ```
 
-### Step 4: Use context to listen to values
+### Step 4: Wrap your widget with View widget to listen to data
 
 ```dart
-context.select<Counter>(), // Gives you a stream of Counter.
+View<Counter>(
+  builder: (data) => Text(
+    data.value.toString(),
+    style: Theme.of(context).textTheme.headline4,
+  ),
+)
+```
+You can also use `StreamBuilder` to listen to data.
+
+```dart
+StreamBuilder<Counter>(
+  initialData: context.fetch<Counter>(),
+  stream: context.select<Counter>(),
+  builder: (context, snapshot) {
+    final counterText = snapshot.data!.value.toString();
+    return Text(
+      counterText,
+      style: Theme.of(context).textTheme.headline4,
+    );
+  },
+)
+```
+Or you can create a widget extending `DataWidget`.
+
+```dart
+class CounterText extends DataWidget<Counter> {
+  @override
+  Widget buildUsingData(BuildContext context, Counter data) {
+    return Text(
+      'Inheritance: ${data.value.toString()}',
+      style: Theme.of(context).textTheme.headline4,
+    );
+  }
+}
 ```
 
 To learn more, move on to the [example section](https://pub.dev/packages/zam_event_bus_provider/example) or check out this dedicated [example in github](https://github.com/zamstation/zam_event_bus_provider/blob/main/example/lib/main.dart).

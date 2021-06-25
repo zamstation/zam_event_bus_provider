@@ -68,28 +68,36 @@ class HomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            // You have two options to listen to data:
             Text('You have pushed the button this many times:'),
-            StreamBuilder<Counter>(
-                initialData: context.fetch<Counter>(),
-                stream: context.select<Counter>(),
-                builder: (context, snapshot) {
-                  // IMPORTANT: Always initialize before listening.
-                  // Here data will not be null since InitializeEvent is
-                  // sent before initializing the app and initialData is set.
-                  final counterText = snapshot.data!.value.toString();
-                  return Text(
-                    counterText,
-                    style: Theme.of(context).textTheme.headline4,
-                  );
-                }),
+            //   1. inheritance
+            //   - Create a CounterText widget extending DataWidget
+            CounterText(),
+            //   2. composition
+            //   - Wrap your widget inside a View widget.
+            View<Counter>(
+              builder: (data) => Text(
+                'Composition: ${data.value.toString()}',
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.dispatch(IncrementEvent()),
-        tooltip: 'Increment',
         child: Icon(Icons.add),
       ),
+    );
+  }
+}
+
+class CounterText extends DataWidget<Counter> {
+  @override
+  Widget buildUsingData(BuildContext context, Counter data) {
+    return Text(
+      'Inheritance: ${data.value.toString()}',
+      style: Theme.of(context).textTheme.headline4,
     );
   }
 }

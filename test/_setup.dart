@@ -61,20 +61,12 @@ class MyHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text('You have pushed the button this many times:'),
-            StreamBuilder<Counter>(
-                initialData: context.fetch<Counter>(),
-                stream: context.select<Counter>(),
-                builder: (context, snapshot) {
-                  // IMPORTANT: Always initialize before listening.
-                  // Here data will not be null since InitializeEvent
-                  // is sent before initializing the app
-                  // and initialData is set.
-                  final counterText = snapshot.data!.value.toString();
-                  return Text(
-                    counterText,
-                    style: Theme.of(context).textTheme.headline4,
-                  );
-                }),
+            View<Counter>(
+              builder: (data) => Text(
+                data.value.toString(),
+                style: Theme.of(context).textTheme.headline4,
+              ),
+            ),
           ],
         ),
       ),

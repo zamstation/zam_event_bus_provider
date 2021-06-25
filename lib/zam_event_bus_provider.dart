@@ -1,1 +1,2 @@
-export 'src/event_bus_provider/_.index.dart';
+export 'provider.dart';
+export 'views.dart';
