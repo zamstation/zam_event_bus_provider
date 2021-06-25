@@ -1,3 +1,9 @@
+# 0.2.0
+- Added the following consumer widgets.
+  - `View`
+	- `ViewWithContext`
+	- `DataWidget`
+
 # 0.1.0
 - Added the following extension methods to `BuildContext`
 	- `bus`
