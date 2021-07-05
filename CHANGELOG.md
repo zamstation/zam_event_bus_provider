@@ -1,3 +1,6 @@
+# 0.3.0
+- Updated dependency: `zam_event_bus 0.7.0`
+
 # 0.2.0
 - Added the following consumer widgets.
 	- `View`
@@ -12,7 +15,7 @@
 	- `save`
 	- `fetch`
 	- `dispatch` (alias for publish)
-- Updated dependency: zam_event_bus 0.3.0.
+- Updated dependency: `zam_event_bus 0.3.0`
 
 # 0.0.1
 - Includes `EventBusProvider`.
