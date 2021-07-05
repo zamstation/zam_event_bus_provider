@@ -3,7 +3,7 @@ import 'package:zam_event_bus/zam_event_bus.dart';
 import 'package:zam_event_bus_provider/zam_event_bus_provider.dart';
 
 ///
-/// The Domain Model.
+/// The Domain Model
 ///
 class Counter {
   final int value;
@@ -14,22 +14,26 @@ class Counter {
 }
 
 ///
-/// IncrementEvent and its Handler.
+/// The Event
 ///
 class IncrementEvent {}
 
-void handleIncrementEvent(IncrementEvent event, EventBus bus) {
-  final currentCounter = bus.selectFromStore<Counter>();
-  final newCounter = currentCounter.increment();
-  bus.publishAndSave(newCounter);
+///
+/// The Event handler
+///
+class IncrementUseCase extends SavingEventTransformer<IncrementEvent, Counter> {
+  @override
+  Counter execute(IncrementEvent event, EventBus bus) {
+    final currentCounter = bus.selectFromStore<Counter>();
+    final newCounter = currentCounter.increment();
+    return newCounter;
+  }
 }
 
 class MyApp extends StatelessWidget {
   final EventBus _bus;
 
-  static final _transformers = <EventTransformer>[
-    CustomEventTransformer<IncrementEvent>(handleIncrementEvent),
-  ];
+  static final _transformers = <EventTransformer>[IncrementUseCase()];
 
   MyApp({Key? key})
       : _bus = EventBus(_transformers),

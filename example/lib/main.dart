@@ -3,7 +3,7 @@ import 'package:zam_event_bus_provider/zam_event_bus_provider.dart';
 import 'package:zam_event_bus/zam_event_bus.dart';
 
 ///
-/// The Domain Model.
+/// The Domain Model
 ///
 class Counter {
   final int value;
@@ -14,21 +14,25 @@ class Counter {
 }
 
 ///
-/// IncrementEvent and its Handler.
+/// The Event
 ///
 class IncrementEvent {}
 
-void handleIncrementEvent(IncrementEvent event, EventBus bus) {
-  final currentCounter = bus.selectFromStore<Counter>();
-  final newCounter = currentCounter.increment();
-  bus.publishAndSave(newCounter);
+///
+/// The Event handler
+///
+class IncrementUseCase extends SavingEventTransformer<IncrementEvent, Counter> {
+  @override
+  Counter execute(IncrementEvent event, EventBus bus) {
+    final currentCounter = bus.selectFromStore<Counter>();
+    final newCounter = currentCounter.increment();
+    return newCounter;
+  }
 }
 
 void main() {
   // The setup
-  final transformers = <EventTransformer>[
-    CustomEventTransformer<IncrementEvent>(handleIncrementEvent),
-  ];
+  final transformers = <EventTransformer>[IncrementUseCase()];
   final bus = EventBus(transformers);
 
   // Store initial data.
