@@ -17,7 +17,7 @@ class EventBusProvider extends InheritedWidget {
   static EventBus of(BuildContext context) {
     final provider =
         context.dependOnInheritedWidgetOfExactType<EventBusProvider>();
-    if (provider == null) throw EventBusProviderNotFoundException();
+    if (provider == null) throw const EventBusProviderNotFoundException();
     return provider.bus;
   }
 

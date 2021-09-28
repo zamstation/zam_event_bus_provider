@@ -7,6 +7,6 @@ extension FetchOnBuildContextExtension on BuildContext {
   /// Fetches data from store.
   ///
   VIEW_MODEL fetch<VIEW_MODEL extends Object>() {
-    return this.bus.selectFromStore<VIEW_MODEL>();
+    return bus.selectFromStore<VIEW_MODEL>();
   }
 }

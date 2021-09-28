@@ -7,6 +7,6 @@ extension PublishOnBuildContextExtension on BuildContext {
   /// Publishes an event to EventBus.
   ///
   void publish<EVENT extends Object>(EVENT event) {
-    this.bus.publish(event);
+    bus.publish(event);
   }
 }

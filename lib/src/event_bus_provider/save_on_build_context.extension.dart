@@ -7,6 +7,6 @@ extension SaveOnBuildContextExtension on BuildContext {
   /// Saves an object to store.
   ///
   void save(Object message) {
-    this.bus.save(message);
+    bus.save(message);
   }
 }

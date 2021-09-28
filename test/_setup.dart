@@ -38,14 +38,14 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key})
       : _bus = EventBus(_transformers),
         super(key: key) {
-    _bus.save(Counter());
+    _bus.save(const Counter());
   }
 
   @override
   Widget build(BuildContext context) {
     return EventBusProvider(
       bus: _bus,
-      child: MaterialApp(
+      child: const MaterialApp(
         home: MyHomePage(title: 'Event Bus Demo'),
       ),
     );
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatelessWidget {
   final String title;
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('You have pushed the button this many times:'),
+            const Text('You have pushed the button this many times:'),
             View<Counter>(
               builder: (data) => Text(
                 data.value.toString(),
@@ -77,7 +77,7 @@ class MyHomePage extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.dispatch(IncrementEvent()),
         tooltip: 'Increment',
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }

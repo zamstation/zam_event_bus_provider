@@ -7,6 +7,6 @@ extension DispatchOnBuildContextExtension on BuildContext {
   /// Publishes an event to EventBus.
   ///
   void dispatch<EVENT extends Object>(EVENT event) {
-    this.bus.publish(event);
+    bus.publish(event);
   }
 }

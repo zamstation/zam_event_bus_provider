@@ -36,7 +36,7 @@ void main() {
   final bus = EventBus(transformers);
 
   // Store initial data.
-  bus.save(Counter());
+  bus.save(const Counter());
 
   // Pass in the bus and run the app.
   runApp(MyApp(bus));
@@ -45,7 +45,10 @@ void main() {
 class MyApp extends StatelessWidget {
   final EventBus bus;
 
-  const MyApp(this.bus);
+  const MyApp(
+    this.bus, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +56,7 @@ class MyApp extends StatelessWidget {
     // it is made available to all the routes.
     return EventBusProvider(
       bus: bus,
-      child: MaterialApp(
+      child: const MaterialApp(
         home: HomePage(title: 'Event Bus Demo'),
       ),
     );
@@ -62,7 +65,7 @@ class MyApp extends StatelessWidget {
 
 class HomePage extends StatelessWidget {
   final String title;
-  HomePage({Key? key, required this.title}) : super(key: key);
+  const HomePage({Key? key, required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +76,10 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // You have two options to listen to data:
-            Text('You have pushed the button this many times:'),
+            const Text('You have pushed the button this many times:'),
             //   1. inheritance
             //   - Create a CounterText widget extending DataWidget
-            CounterText(),
+            const CounterText(),
             //   2. composition
             //   - Wrap your widget inside a View widget.
             View<Counter>(
@@ -90,13 +93,15 @@ class HomePage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => context.dispatch(IncrementEvent()),
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
 }
 
 class CounterText extends DataWidget<Counter> {
+  const CounterText({Key? key}) : super(key: key);
+
   @override
   Widget buildUsingData(BuildContext context, Counter data) {
     return Text(

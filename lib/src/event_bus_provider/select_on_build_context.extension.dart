@@ -7,6 +7,6 @@ extension SelectOnBuildContextExtension on BuildContext {
   /// Selects ViewModel from EventBus.
   ///
   Stream<VIEW_MODEL> select<VIEW_MODEL extends Object>() {
-    return this.bus.select<VIEW_MODEL>();
+    return bus.select<VIEW_MODEL>();
   }
 }
