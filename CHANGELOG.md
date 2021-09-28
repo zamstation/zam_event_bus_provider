@@ -1,3 +1,7 @@
+# 0.4.0
+- Updated dependency: `zam_core 0.6.0`
+- Updated dependency: `zam_event_bus 0.8.0`
+
 # 0.3.0
 - Updated dependency: `zam_event_bus 0.7.0`
 
