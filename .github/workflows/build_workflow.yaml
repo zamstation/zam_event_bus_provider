@@ -2,23 +2,23 @@ name: Build
 
 on:
   push:
-    branches-ignore: [temp]
+    branches-ignore: [ignore]
   pull_request:
-    branches-ignore: [temp]
+    branches-ignore: [ignore]
 
 jobs:
   # test:
-    # name: Test
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - name: Checkout Repository
-    #     uses: actions/checkout@v2
-    #     with:
-    #       path: workspace/code
-    #   - name: Install Dart
-    #     uses: dart-lang/setup-dart@v1
-    #   - name: Test
-    #     uses: zamstation/dart_package_deployer/actions/test@main
+  # name: Test
+  # runs-on: ubuntu-latest
+  # steps:
+  #   - name: Checkout Repository
+  #     uses: actions/checkout@v2
+  #     with:
+  #       path: workspace/code
+  #   - name: Install Dart
+  #     uses: dart-lang/setup-dart@v1
+  #   - name: Test
+  #     uses: zamstation/dart_package_deployer/actions/test@main
 
   build:
     name: Build

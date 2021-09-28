@@ -1,8 +1,8 @@
-name: Deploy
+name: Release
 
 on:
   push:
-    tags: ["**"]
+    tags-ignore: [ignore]
 
 jobs:
   # test:

@@ -1,11 +1,6 @@
 # Event Bus Provider
 
-A flutter provider that passes `EventBus` down to all the widgets.  
-  
-[![Version](https://img.shields.io/pub/v/zam_event_bus_provider?color=%234287f5)](https://pub.dev/packages/zam_event_bus_provider)
-[![Build](https://github.com/zamstation/zam_event_bus_provider/actions/workflows/build.yaml/badge.svg)](https://github.com/zamstation/zam_event_bus_provider/actions/workflows/build.yaml)
-[![Stars](https://img.shields.io/github/stars/zamstation/zam_event_bus_provider.svg?style=flat&logo=github&colorB=deeppink&label=stars)](https://github.com/zamstation/zam_event_bus_provider/stargazers)
-[![License](https://img.shields.io/github/license/zamstation/zam_event_bus_provider)](https://pub.dev/packages/zam_event_bus_provider/license)
+A flutter provider that passes `EventBus` down to all the widgets.
 
 ***NOTE:** This package is an extension to `zam_event_bus`.*
 
@@ -13,7 +8,7 @@ A flutter provider that passes `EventBus` down to all the widgets.
 
 Includes the following core components.
 
-  * [EventBusProvider](https://pub.dev/documentation/zam_event_bus_provider/latest/zam_event_bus_provider/EventBusProvider-class.html)
+  * [EventBusProvider](https://pub.dev/documentation/zam_event_bus_provider/latest/provider/EventBusProvider-class.html)
 
 Check out all the components in detail [here](https://pub.dev/documentation/zam_event_bus_provider/latest/zam_event_bus_provider/zam_event_bus_provider-library.html)
 
@@ -46,7 +41,7 @@ Add `EventBusProvider` before `MaterialApp` so that it is made available to all 
 FloatingActionButton(
   onPressed: () => context.dispatch(IncrementEvent()),
   tooltip: 'Increment',
-  child: Icon(Icons.add),
+  child: const Icon(Icons.add),
 ),
 ```
 
@@ -89,7 +84,13 @@ class CounterText extends DataWidget<Counter> {
 }
 ```
 
-To learn more, move on to the [example section](https://pub.dev/packages/zam_event_bus_provider/example) or check out this dedicated [example in github](https://github.com/zamstation/zam_event_bus_provider/blob/main/example/lib/main.dart).
+To learn more, move on to the [example section](https://pub.dev/packages/zam_event_bus_provider/example) or check out these dedicated [examples in github](https://github.com/zamstation/zam_event_bus_provider/blob/main/example/lib).
+
+## Status
+[![Build](https://github.com/zamstation/zam_event_bus_provider/actions/workflows/build_workflow.yaml/badge.svg)](https://github.com/zamstation/zam_event_bus_provider/actions/workflows/build_workflow.yaml)
 
 ## Contributors
-  * [Amsakanna](https://github.com/amsakanna)
+- [Amsakanna](https://github.com/amsakanna)
+
+## License
+[BSD 3-Clause License](https://github.com/zamstation/zam_event_bus_provider/blob/main/LICENSE)
