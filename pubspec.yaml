@@ -1,5 +1,5 @@
 name: zam_event_bus_provider
-version: 0.4.0
+version: 0.5.0
 description: A provider for flutter that passes EventBus down to all the widgets.
 homepage: https://zamstation.com
 repository: https://github.com/zamstation/zam_event_bus_provider
