@@ -5,19 +5,19 @@ homepage: https://zamstation.com
 repository: https://github.com/zamstation/zam_event_bus_provider
 
 environment:
-  sdk: ">=2.13.0 <3.0.0"
+  sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  zam_core: ^0.6.0
-  zam_event_bus: ^0.8.0
+  zam_core: ^0.7.0
+  zam_event_bus: ^0.9.0
 
 dev_dependencies:
-  flutter_lints: ^1.0.4
+  flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  zam_test: ^0.4.0
+  zam_test: ^0.5.0
 
 flutter:
   uses-material-design: true
