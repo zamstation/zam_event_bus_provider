@@ -1,3 +1,6 @@
+# 0.5.1
+- Infra: CI/CD changes
+
 # 0.5.0
 - Dependency Updates:
 	- `flutter 3.0.0`
