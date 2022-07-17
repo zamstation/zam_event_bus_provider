@@ -49,5 +49,7 @@ jobs:
           key: build-${{ github.sha }}
       - name: Install Dart
         uses: dart-lang/setup-dart@v1
+        with:
+          sdk: beta
       - name: Dry Deploy
         uses: zamstation/dart_package_deployer/actions/dry_deploy@main
