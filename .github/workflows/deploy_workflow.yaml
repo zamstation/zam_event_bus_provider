@@ -50,5 +50,7 @@ jobs:
           key: build-${{ github.sha }}
       - name: Install Dart
         uses: dart-lang/setup-dart@v1
+        with:
+          sdk: beta
       - name: Deploy
         uses: zamstation/dart_package_deployer/actions/deploy@main
